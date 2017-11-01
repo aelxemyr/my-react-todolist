@@ -12,7 +12,7 @@ describe('TodoList component', () => {
     },
   ];
 
-  const component = shallow(<TodoList />);
+  const component = shallow(<TodoList todos={todos} />);
 
   it('Should render successfully', () => {
     expect(component.exists()).toEqual(true);
