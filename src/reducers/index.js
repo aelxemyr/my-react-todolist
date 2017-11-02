@@ -19,7 +19,6 @@ export const reducer = (state = initialState, action) => {
             text: action.text,
           },
         ],
-        deletions: state.deletions,
       };
 
     case types.DELETE_TODO:
@@ -39,13 +38,19 @@ export const reducer = (state = initialState, action) => {
       };
 
     case types.UNDELETE_TODO:
+      const deletions = state.deletions.slice(0, -1);
       return {
         ...state,
         todos: [
           ...state.todos,
           ...state.deletions.slice(-1),
         ],
-        deletions: state.deletions.slice(0,-1),
+        deletions,
+      };
+
+    case types.TOGGLE_SUBMIT:
+      return {
+        ...state,
       };
 
     default:

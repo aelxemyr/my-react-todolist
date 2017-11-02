@@ -18,6 +18,7 @@ const AddTodo = ({ submitTodo, undeleteTodo }) => {
           ref={(element) => {
             input = element;
           }}
+          placeholder="I'm going to do..."
         />
 
         <button type="submit" className="todo-submit">
