@@ -8,8 +8,8 @@ import actions from './actions/';
 export const App = ({ submitTodo, todos, deleteTodo, undeleteTodo }) => (
   <div>
     <h1>Todo list</h1>
-    <AddTodo submitTodo={submitTodo} />
-    <TodoList todos={todos} deleteTodo={deleteTodo} undeleteTodo={undeleteTodo}/>
+    <AddTodo submitTodo={submitTodo} undeleteTodo={undeleteTodo} />
+    <TodoList todos={todos} deleteTodo={deleteTodo} />
   </div>
 );
 
