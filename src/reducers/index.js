@@ -2,6 +2,7 @@ import types from '../constants/';
 
 export const initialState = {
   todos: [],
+  deletions: [],
 };
 
 export const reducer = (state = initialState, action) => {
@@ -18,6 +19,7 @@ export const reducer = (state = initialState, action) => {
             text: action.text,
           },
         ],
+        deletions: state.deletions,
       };
 
     case types.DELETE_TODO:
@@ -28,6 +30,22 @@ export const reducer = (state = initialState, action) => {
             todo.id !== action.id
           )),
         ],
+        deletions: [
+          ...state.deletions,
+          state.todos.find(todo => (
+            todo.id === action.id
+          )),
+        ],
+      };
+
+    case types.UNDELETE_TODO:
+      return {
+        ...state,
+        todos: [
+          ...state.todos,
+          ...state.deletions.slice(-1),
+        ],
+        deletions: state.deletions.slice(0,-1),
       };
 
     default:
