@@ -3,6 +3,8 @@ import types from '../constants/';
 export const initialState = {
   todos: [],
   deletions: [],
+  addTodoDisabled: true,
+  undeleteDisabled: true,
 };
 
 export const reducer = (state = initialState, action) => {
@@ -19,6 +21,7 @@ export const reducer = (state = initialState, action) => {
             text: action.text,
           },
         ],
+        addTodoDisabled: true,
       };
 
     case types.DELETE_TODO:
@@ -35,6 +38,7 @@ export const reducer = (state = initialState, action) => {
             todo.id === action.id
           )),
         ],
+        undeleteDisabled: false,
       };
 
     case types.UNDELETE_TODO:
@@ -46,11 +50,13 @@ export const reducer = (state = initialState, action) => {
           ...state.deletions.slice(-1),
         ],
         deletions,
+        undeleteDisabled: deletions.length === 0,
       };
 
-    case types.TOGGLE_SUBMIT:
+    case types.INPUT_CHANGED:
       return {
         ...state,
+        addTodoDisabled: action.text === '',
       };
 
     default:

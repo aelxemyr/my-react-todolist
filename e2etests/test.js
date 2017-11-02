@@ -51,7 +51,7 @@ describe('TodoList App', () => {
 
   it('Should enable the Add Todo button when text is entered', () => {
     browser.element('.todo-input').setValue(todoText);
-    expect(browser.isEnabled('todo-submit')).to.equal(true);
+    expect(browser.isEnabled('.todo-submit')).to.equal(true);
   });
 
   it('Should disable the Undelete button when there are no deletions', () => {
@@ -61,6 +61,6 @@ describe('TodoList App', () => {
   it('Should enable the Undelete button when there are deletions', () => {
     createTodo();
     browser.click('.todo-delete');
-    expect(browser.isEnabled('.todo-undelete')).toEqual(true);
+    expect(browser.isEnabled('.todo-undelete')).to.equal(true);
   });
 });

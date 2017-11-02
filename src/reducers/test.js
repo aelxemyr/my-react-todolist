@@ -61,6 +61,7 @@ describe('Reducer', () => {
             text: todoText,
           },
         ],
+        undeleteDisabled: false,
       };
 
       expect(reducer(startingState, action)).toEqual(expectedState);
@@ -77,6 +78,7 @@ describe('Reducer', () => {
             text: todoText,
           },
         ],
+        undeleteDisabled: false,
       };
 
       const action = {
@@ -95,6 +97,31 @@ describe('Reducer', () => {
       };
 
       expect(reducer(startingState, action)).toEqual(expectedState);
+    });
+  });
+
+  describe('Change input', () => {
+    it('Should return the correct state with empty input', () => {
+      const action = {
+        type: types.INPUT_CHANGED,
+        text: '',
+      };
+
+      expect(reducer(initialState, action)).toEqual(initialState);
+    });
+
+    it('Should return the correct state with input entered', () => {
+      const action = {
+        type: types.INPUT_CHANGED,
+        text: todoText,
+      };
+
+      const expectedState = {
+        ...initialState,
+        addTodoDisabled: false,
+      };
+
+      expect(reducer(initialState, action)).toEqual(expectedState);
     });
   });
 });
